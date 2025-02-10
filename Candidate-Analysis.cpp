@@ -41,6 +41,8 @@ public:
 private:
     void OnSkillSelected(wxCommandEvent& event);
     void OnSkillDoubleClick(wxMouseEvent& event);
+    void OnFilterChanged(wxCommandEvent& event);
+    void OnClearButtonClicked(wxCommandEvent& event);
 
     wxTextCtrl* totalCandidates;
     wxListCtrl* universityStats;
@@ -210,6 +212,126 @@ MyFrame::MyFrame()
 
     panel->SetSizer(mainSizer);
 	skillsInput->Bind(wxEVT_COMBOBOX, &MyFrame::OnSkillSelected, this);
+    skillsCheckBox->Bind(wxEVT_CHECKBOX, &MyFrame::OnFilterChanged, this);
+    universityCheckBox->Bind(wxEVT_CHECKBOX, &MyFrame::OnFilterChanged, this);
+    gpaCheckBox->Bind(wxEVT_CHECKBOX, &MyFrame::OnFilterChanged, this);
+    clearButton->Bind(wxEVT_BUTTON, &MyFrame::OnClearButtonClicked, this);
+}
+
+void MyFrame::OnClearButtonClicked(wxCommandEvent& event)
+{
+    // Clear all text inputs
+    skillsInput->SetValue("");
+    universityInput->SetValue("");
+    minGPAInput->SetValue("");
+    maxGPAInput->SetValue("");
+
+    // Uncheck all checkboxes
+    skillsCheckBox->SetValue(false);
+    universityCheckBox->SetValue(false);
+    gpaCheckBox->SetValue(false);
+
+    // Clear selected skills
+    for (auto skillText : selectedSkills) {
+        skillsWrapSizer->Detach(skillText);
+        skillText->Destroy();
+    }
+    selectedSkills.clear();
+    skillsWrapSizer->Layout();
+    panel->Layout();
+
+    DatabaseManager& db = DatabaseManager::getInstance();
+    std::vector<Candidate> candidates = db.getCandidatesByDate(getCurrentDate());
+
+    // Update the candidate list
+    candidatesList->DeleteAllItems();
+    for (const auto& candidate : candidates) {
+        long index = candidatesList->InsertItem(candidatesList->GetItemCount(), candidate.name);
+        candidatesList->SetItem(index, 1, candidate.university);
+
+        // Join all skills into a single string separated by commas
+        std::string skills;
+        for (const auto& skill : candidate.skills) {
+            if (!skills.empty()) {
+                skills += ", ";
+            }
+            skills += skill;
+        }
+        candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
+        candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+    }
+}
+
+void MyFrame::OnFilterChanged(wxCommandEvent& event)
+{
+    DatabaseManager& db = DatabaseManager::getInstance();
+    FilterManager filter;
+
+    std::vector<Candidate> candidates = db.getCandidatesByDate(getCurrentDate());
+
+    if (skillsCheckBox->IsChecked()) {
+        std::vector<std::string> selectedSkillsList;
+        for (const auto& skillText : selectedSkills) {
+            selectedSkillsList.push_back(std::string(skillText->GetLabel().mb_str()));
+        }
+        if (!selectedSkillsList.empty()) {
+            candidates = filter.filterBySkills(candidates, selectedSkillsList);
+		}
+        else {
+            wxMessageBox("Please select a skill", "Validation Error", wxOK | wxICON_ERROR);
+            return;
+        }
+    }
+
+    if (universityCheckBox->IsChecked()) {
+        wxString selectedUniversity = universityInput->GetValue();
+        if (!selectedUniversity.IsEmpty()) {
+            candidates = filter.filterByUniversity(candidates, selectedUniversity.ToStdString());
+		}
+        else {
+            wxMessageBox("Please select a university", "Validation Error", wxOK | wxICON_ERROR);
+            return;
+        }
+    }
+
+    if (gpaCheckBox->IsChecked()) {
+        double minGPA, maxGPA;
+        if (minGPAInput->GetValue().ToDouble(&minGPA) && maxGPAInput->GetValue().ToDouble(&maxGPA)) {
+            if (minGPA > maxGPA) {
+                wxMessageBox("Min GPA should be less than or equal to Max GPA", "Validation Error", wxOK | wxICON_ERROR);
+                return;
+            }
+            candidates = filter.filterByGPA(candidates, minGPA, maxGPA);
+        }
+        else {
+            wxMessageBox("Please enter valid GPA values", "Validation Error", wxOK | wxICON_ERROR);
+            return;
+        }
+    }
+
+	// Check if candidates is empty
+	if (candidates.empty()) {
+		wxMessageBox("No candidates found", "Validation Error", wxOK | wxICON_ERROR);
+		return;
+	}
+
+    // Update candidatesList with candidates
+    candidatesList->DeleteAllItems();
+    for (const auto& candidate : candidates) {
+        long index = candidatesList->InsertItem(candidatesList->GetItemCount(), candidate.name);
+        candidatesList->SetItem(index, 1, candidate.university);
+
+        // Join all skills into a single string separated by commas
+        std::string skills;
+        for (const auto& skill : candidate.skills) {
+            if (!skills.empty()) {
+                skills += ", ";
+            }
+            skills += skill;
+        }
+        candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
+        candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+    }
 }
 
 void MyFrame::OnSkillSelected(wxCommandEvent& event)

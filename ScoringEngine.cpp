@@ -2,18 +2,17 @@
 #include <algorithm>
 
 float ScoringEngine::calculateScore(const Candidate& candidate, const ScoringWeights& weights) {
-    // University weight (default to 0 if not found)
+    // University weight
     float uniWeight = 0.0f;
     auto it = weights.universityWeights.find(candidate.university);
     if (it != weights.universityWeights.end()) {
         uniWeight = it->second;
     }
 
-    // Skill matches (assume requiredSkills are predefined)
-    std::vector<std::string> requiredSkills = { "C++", "Python", "Data Analysis" };
+    // Skill matches
     int matchingSkills = 0;
     for (const auto& skill : candidate.skills) {
-        if (std::find(requiredSkills.begin(), requiredSkills.end(), skill) != requiredSkills.end()) {
+        if (std::find(weights.requiredSkills.begin(), weights.requiredSkills.end(), skill) != weights.requiredSkills.end()) {
             matchingSkills++;
         }
     }

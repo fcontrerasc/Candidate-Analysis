@@ -3,13 +3,10 @@
 #include <map>
 
 struct ScoringWeights {
-    float gpaWeight = 0.4f;
-    float skillWeight = 0.4f;
-    std::map<std::string, float> universityWeights = {
-        {"University of Florida", 0.2f},
-        {"Polytechnic University of Bucharest", 0.1f},
-        // Add other universities
-    };
+    float gpaWeight = 0.0f;
+    float skillWeight = 0.0f;
+	std::vector<std::string> requiredSkills;
+    std::map<std::string, float> universityWeights;
 };
 
 class ScoringEngine {
