@@ -1,0 +1,161 @@
+[
+  {
+    "name": "Aiden Lopez",
+    "GPA": -1.5,
+    "skills": ["Python", "Flask", "PostgreSQL"],
+    "hobby": "kayaking"
+  },
+  {
+    "name": "Bella Johnson",
+    "GPA": 3.65,
+    "skills": ["Java", "Spring Boot", "Hibernate"],
+    "availability": "remote"
+  },
+  {
+    "GPA": -2.0,
+    "skills": ["JavaScript", "React", "Node.js"],
+    "certifications": "Certified React Developer"
+  },
+  {
+    "name": "Daniel White",
+    "GPA": 3.88,
+    "skills": ["Ruby", "Rails", "RSpec"],
+    "hobby": "painting"
+  },
+  {
+    "name": "Ethan Green",
+    "GPA": -3.2,
+    "skills": ["C++", "Game Development", "OpenGL"],
+    "availability": "part-time"
+  },
+  {
+    "GPA": 3.9,
+    "skills": ["Go", "Microservices", "Redis"],
+    "hobby": "hiking"
+  },
+  {
+    "name": "Grace Hall",
+    "GPA": 3.67,
+    "skills": ["TypeScript", "Angular", "RxJS"],
+    "certifications": "Certified Angular Developer"
+  },
+  {
+    "name": "Henry Moore",
+    "GPA": -1.0,
+    "skills": ["PHP", "Laravel", "Blade"],
+    "availability": "freelance"
+  },
+  {
+    "name": "Isla Carter",
+    "GPA": 3.72,
+    "skills": ["Swift", "iOS Development", "UIKit"],
+    "preferred_ide": "Xcode"
+  },
+  {
+    "GPA": 3.85,
+    "skills": ["C#", ".NET", "Azure"],
+    "hobby": "gaming"
+  },
+  {
+    "name": "Katie Brown",
+    "GPA": -0.5,
+    "skills": ["Python", "Machine Learning", "TensorFlow"],
+    "certifications": "Certified Data Scientist"
+  },
+  {
+    "GPA": 3.88,
+    "skills": ["Java", "Spring", "Hibernate"],
+    "availability": "contract"
+  },
+  {
+    "name": "Maya Martinez",
+    "GPA": -2.7,
+    "skills": ["Rust", "WebAssembly", "Networking"],
+    "hobby": "gardening"
+  },
+  {
+    "name": "Nathaniel Garcia",
+    "GPA": 3.78,
+    "skills": ["Kotlin", "Android", "Jetpack Compose"],
+    "preferred_ide": "Android Studio"
+  },
+  {
+    "name": "Olivia Smith",
+    "GPA": -3.5,
+    "skills": ["JavaScript", "Vue.js", "GraphQL"],
+    "certifications": "Frontend Certified"
+  },
+  {
+    "GPA": 3.91,
+    "skills": ["Go", "Gin", "Gorm"],
+    "availability": "remote"
+  },
+  {
+    "name": "Quinn Wright",
+    "GPA": -1.8,
+    "skills": ["Scala", "Spark", "Kafka"],
+    "hobby": "volunteering"
+  },
+  {
+    "GPA": 3.89,
+    "skills": ["JavaScript", "React Native", "Expo"],
+    "preferred_ide": "VSCode"
+  },
+  {
+    "name": "Samuel Evans",
+    "GPA": 3.87,
+    "skills": ["Python", "Flask", "Pandas"],
+    "certifications": "Backend Certified"
+  },
+  {
+    "GPA": -0.9,
+    "skills": ["C++", "QT", "OpenCV"],
+    "availability": "freelance"
+  },
+  {
+    "name": "Uma Cooper",
+    "GPA": 3.9,
+    "skills": ["Java", "REST APIs", "JUnit"],
+    "hobby": "woodworking"
+  },
+  {
+    "name": "Victor Lopez",
+    "GPA": 3.88,
+    "skills": ["Rust", "Tokio", "Actix"],
+    "certifications": "Certified Rust Developer"
+  },
+  {
+    "name": "Willow Rivera",
+    "GPA": -3.0,
+    "skills": ["JavaScript", "Electron", "Chakra UI"],
+    "availability": "full-time"
+  },
+  {
+    "GPA": 3.85,
+    "skills": ["Go", "Echo", "PostgreSQL"],
+    "hobby": "yoga"
+  },
+  {
+    "name": "Xander Green",
+    "GPA": -2.5,
+    "skills": ["C#", "Unity", "Game Development"],
+    "preferred_ide": "Rider"
+  },
+  {
+    "name": "Yasmine Young",
+    "GPA": 3.8,
+    "skills": ["Python", "Django", "Celery"],
+    "hobby": "marathon running"
+  },
+  {
+    "GPA": 3.83,
+    "skills": ["Ruby", "Sinatra", "PostgreSQL"],
+    "availability": "part-time"
+  },
+  {
+    "name": "Zachary Brown",
+    "GPA": -2.2,
+    "skills": ["Kotlin", "Android", "Coroutines"],
+    "certifications": "Certified Android Developer"
+  }
+]

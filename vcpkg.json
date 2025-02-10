@@ -1,0 +1,9 @@
+{
+  "dependencies": [
+    "cpprestsdk",
+    "rapidjson",
+    "skia",
+    "sqlite3",
+    "tinyxml2"
+  ]
+}

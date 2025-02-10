@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <root>
+     <candidate>
+         <name>Aiden Lopez</name>
+         <GPA>-1.5</GPA>
+         <skills>Python</skills>
+         <skills>Flask</skills>
+         <skills>PostgreSQL</skills>
+         <hobby>kayaking</hobby>
+     </candidate>
+     <candidate>
+         <name>Bella Johnson</name>
+         <GPA>3.65</GPA>
+         <skills>Java</skills>
+         <skills>Spring Boot</skills>
+         <skills>Hibernate</skills>
+         <availability>remote</availability>
+     </candidate>
+     <candidate>
+         <GPA>-2</GPA>
+         <skills>JavaScript</skills>
+         <skills>React</skills>
+         <skills>Node.js</skills>
+         <certifications>Certified React Developer</certifications>
+         <name>Daniel White</name>
+         <GPA>3.88</GPA>
+         <skills>Ruby</skills>
+         <skills>Rails</skills>
+         <skills>RSpec</skills>
+         <hobby>painting</hobby>
+     </candidate>
+     <candidate>
+         <name>Ethan Green</name>
+         <GPA>-3.2</GPA>
+         <skills>C++</skills>
+         <skills>Game Development</skills>
+         <skills>OpenGL</skills>
+         <availability>part-time</availability>
+     </candidate>
+     <candidate>
+         <GPA>3.9</GPA>
+         <skills>Go</skills>
+         <skills>Microservices</skills>
+         <skills>Redis</skills>
+         <hobby>hiking</hobby>
+     </candidate>
+     <candidate>
+         <name>Grace Hall</name>
+         <GPA>3.67</GPA>
+         <skills>TypeScript</skills>
+         <skills>Angular</skills>
+         <skills>RxJS</skills>
+         <certifications>Certified Angular Developer</certifications>
+     <candidate>
+         <name>Henry Moore</name>
+         <GPA>-1</GPA>
+         <skills>PHP</skills>
+         <skills>Laravel</skills>
+         <skills>Blade</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Isla Carter</name>
+         <GPA>3.72</GPA>
+         <skills>Swift</skills>
+         <skills>iOS Development</skills>
+         <skills>UIKit</skills>
+         <preferred_ide>Xcode</preferred_ide>
+     </candidate>
+     <candidate>
+         <GPA>3.85</GPA>
+         <skills>C#</skills>
+         <skills>.NET</skills>
+         <skills>Azure</skills>
+         <hobby>gaming</hobby>
+     </candidate>
+ </root>

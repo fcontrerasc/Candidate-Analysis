@@ -1,12 +1,175 @@
-CMakeLists.txt.user
+# Compiled object files
+*.o
+*.obj
+
+# Compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled static libraries
+*.lib
+*.a
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+*.pdb
+*.ilk
+*.idb
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# CMake files
+CMakeFiles/
 CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
 cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
-CMakeUserPresets.json
+Makefile
+
+# Visual Studio files
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.ncb
+*.user
+*.vcproj
+*.vcproj.*
+*.pdb
+*.ipch
+*.opensdf
+*.sdf
+*.cache
+*.ilk
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
+*.dir
+*.obj
+*.pch
+*.res
+*.rsp
+*.tlb
+*.tli
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.vscode/
+.vs/
+*.dbmdl
+*.dbproj
+*.jfm
+
+# Qt Creator files
+*.pro.user
+*.qmake.stash
+*.qmake.cache
+
+# Xcode files
+*.xcworkspace
+*.xcuserdata
+*.xcodeproj
+*.xcuserdatad
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Other files
+*.DS_Store
+*.directory
+*.log
+*.bak
+*.swp
+*.swo
+*.tmp
+*.temp
+*.~*
+
+# Backup files
+*~
+*.bak
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Build directories
+build/
+bin/
+lib/
+out/
+Debug/
+Release/
+
+# Generated files
+*.generated.*
+
+# vcpkg directories
+.vcpkg/
+.vcpkg-root
+vcpkg_installed/
+vcpkg/
+
+# Ignore vcpkg artifacts
+.vcpkg-root
+vcpkg_installed/
+vcpkg/buildtrees/
+vcpkg/downloads/
+vcpkg/packages/
+vcpkg/installed/
+vcpkg/vcpkg-artifacts/
+
+# Ignore Visual Studio specific files and directories
+.vs/
+*.vcxproj.*
+*.sln
+*.suo
+*.ncb
+*.user
+*.vcproj
+*.vcproj.*
+*.pdb
+*.ipch
+*.opensdf
+*.sdf
+*.cache
+*.ilk
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
+*.dir
+*.obj
+*.pch
+*.res
+*.rsp
+*.tlb
+*.tli
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+.vscode/
+.vs/
+*.dbmdl
+*.dbproj
+*.jfm
+
+# Ignore build output directories
+x64/
+
+# Ignore database file
+*.db

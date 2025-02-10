@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <root>
+     <candidate>
+         <name>Aaron Bryant</name>
+         <GPA>3.72</GPA>
+         <skills>Python</skills>
+         <skills>Django</skills>
+         <skills>PostgreSQL</skills>
+         <hobby>kayaking</hobby>
+     </candidate>
+     <candidate>
+         <name>Bethany Collins</name>
+         <GPA>3.84</GPA>
+         <skills>Java</skills>
+         <skills>Spring Boot</skills>
+         <skills>Hibernate</skills>
+         <preferred_ide>IntelliJ</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Caleb Evans</name>
+         <GPA>3.93</GPA>
+         <skills>JavaScript</skills>
+         <skills>React</skills>
+         <skills>Node.js</skills>
+         <certifications>Certified Full Stack Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Danielle Fisher</name>
+         <GPA>3.78</GPA>
+         <skills>Ruby</skills>
+         <skills>Rails</skills>
+         <skills>RSpec</skills>
+         <hobby>painting</hobby>
+     </candidate>
+     <candidate>
+         <name>Elijah Gray</name>
+         <GPA>3.89</GPA>
+         <skills>C++</skills>
+         <skills>Game Development</skills>
+         <skills>OpenGL</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Fiona Hayes</name>
+         <GPA>3.91</GPA>
+         <skills>Go</skills>
+         <skills>Microservices</skills>
+         <skills>Kubernetes</skills>
+         <hobby>hiking</hobby>
+     </candidate>
+     <candidate>
+         <name>George Irving</name>
+         <GPA>3.75</GPA>
+         <skills>TypeScript</skills>
+         <skills>Angular</skills>
+         <skills>RxJS</skills>
+         <certifications>Certified Angular Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Holly Jenkins</name>
+         <GPA>3.87</GPA>
+         <skills>PHP</skills>
+         <skills>Laravel</skills>
+         <skills>MySQL</skills>
+         <preferred_ide>PHPStorm</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Isaac King</name>
+         <GPA>3.77</GPA>
+         <skills>Swift</skills>
+         <skills>iOS Development</skills>
+         <skills>UIKit</skills>
+         <hobby>woodworking</hobby>
+     </candidate>
+     <candidate>
+         <name>Julia Lane</name>
+         <GPA>3.82</GPA>
+         <skills>C#</skills>
+         <skills>ASP.NET</skills>
+         <skills>Azure</skills>
+         <availability>remote</availability>
+     </candidate>
+     <candidate>
+         <name>Kyle Mitchell</name>
+         <GPA>3.65</GPA>
+         <skills>Python</skills>
+         <skills>Machine Learning</skills>
+         <skills>TensorFlow</skills>
+         <certifications>Certified Machine Learning Specialist</certifications>
+     </candidate>
+     <candidate>
+         <name>Lila Nelson</name>
+         <GPA>3.88</GPA>
+         <skills>Java</skills>
+         <skills>Spring</skills>
+         <skills>Hibernate</skills>
+         <hobby>cycling</hobby>
+     </candidate>
+     <candidate>
+         <name>Mason O'Connor</name>
+         <GPA>3.79</GPA>
+         <skills>Rust</skills>
+         <skills>WebAssembly</skills>
+         <skills>Tokio</skills>
+         <availability>part-time</availability>
+     </candidate>
+     <candidate>
+         <name>Nina Parker</name>
+         <GPA>3.86</GPA>
+         <skills>Kotlin</skills>
+         <skills>Android Development</skills>
+         <skills>Jetpack Compose</skills>
+         <preferred_ide>Android Studio</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Owen Quinn</name>
+         <GPA>3.92</GPA>
+         <skills>JavaScript</skills>
+         <skills>Vue.js</skills>
+         <skills>GraphQL</skills>
+         <hobby>photography</hobby>
+     </candidate>
+     <candidate>
+         <name>Paula Reed</name>
+         <GPA>3.76</GPA>
+         <skills>Go</skills>
+         <skills>Concurrency</skills>
+         <skills>Gin</skills>
+         <certifications>Certified Go Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Quincy Scott</name>
+         <GPA>3.73</GPA>
+         <skills>Scala</skills>
+         <skills>Akka</skills>
+         <skills>Play Framework</skills>
+         <hobby>baking</hobby>
+     </candidate>
+     <candidate>
+         <name>Rachel Taylor</name>
+         <GPA>3.8</GPA>
+         <skills>JavaScript</skills>
+         <skills>React Native</skills>
+         <skills>Expo</skills>
+         <preferred_ide>VSCode</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Samuel Underwood</name>
+         <GPA>3.9</GPA>
+         <skills>Python</skills>
+         <skills>FastAPI</skills>
+         <skills>Pandas</skills>
+         <hobby>blogging</hobby>
+     </candidate>
+     <candidate>
+         <name>Tina Vincent</name>
+         <GPA>3.84</GPA>
+         <skills>C++</skills>
+         <skills>Embedded Systems</skills>
+         <skills>Networking</skills>
+         <availability>contract</availability>
+     </candidate>
+     <candidate>
+         <name>Uma White</name>
+         <GPA>3.93</GPA>
+         <skills>Java</skills>
+         <skills>REST APIs</skills>
+         <skills>JUnit</skills>
+         <certifications>Certified Java Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Victor Young</name>
+         <GPA>3.81</GPA>
+         <skills>Rust</skills>
+         <skills>Actix</skills>
+         <skills>Tokio</skills>
+         <hobby>gardening</hobby>
+     </candidate>
+     <candidate>
+         <name>Willow Adams</name>
+         <GPA>3.9</GPA>
+         <skills>JavaScript</skills>
+         <skills>Electron</skills>
+         <skills>Chakra UI</skills>
+         <availability>full-time</availability>
+     </candidate>
+     <candidate>
+         <name>Xander Bell</name>
+         <GPA>3.8</GPA>
+         <skills>Go</skills>
+         <skills>Echo</skills>
+         <skills>PostgreSQL</skills>
+         <hobby>yoga</hobby>
+     </candidate>
+     <candidate>
+         <name>Yasmine Carter</name>
+         <GPA>3.89</GPA>
+         <skills>C#</skills>
+         <skills>Unity</skills>
+         <skills>Game Development</skills>
+         <preferred_ide>Rider</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Zachary Davis</name>
+         <GPA>3.75</GPA>
+         <skills>Python</skills>
+         <skills>Django</skills>
+         <skills>Celery</skills>
+         <hobby>rock climbing</hobby>
+     </candidate>
+     <candidate>
+         <name>Aaron Brown</name>
+         <GPA>3.67</GPA>
+         <skills>Ruby</skills>
+         <skills>Sinatra</skills>
+         <skills>PostgreSQL</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Beth Carter</name>
+         <GPA>3.85</GPA>
+         <skills>Kotlin</skills>
+         <skills>Android</skills>
+         <skills>Coroutines</skills>
+         <certifications>Android Certified Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Charlie Donovan</name>
+         <GPA>3.82</GPA>
+         <skills>JavaScript</skills>
+         <skills>Svelte</skills>
+         <skills>Rollup</skills>
+         <hobby>cosplaying</hobby>
+     </candidate>
+     <candidate>
+         <name>Danielle Emerson</name>
+         <GPA>3.86</GPA>
+         <skills>PHP</skills>
+         <skills>Symfony</skills>
+         <skills>Doctrine</skills>
+         <preferred_ide>PHPStorm</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Eleanor Ford</name>
+         <GPA>3.92</GPA>
+         <skills>Scala</skills>
+         <skills>Spark</skills>
+         <skills>Kafka</skills>
+         <hobby>volunteering</hobby>
+     </candidate>
+     <candidate>
+         <name>Finn Grant</name>
+         <GPA>3.9</GPA>
+         <skills>C++</skills>
+         <skills>QT</skills>
+         <skills>OpenCV</skills>
+         <certifications>Certified C++ Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Grace Harper</name>
+         <GPA>3.88</GPA>
+         <skills>Python</skills>
+         <skills>Flask</skills>
+         <skills>REST APIs</skills>
+         <availability>contract</availability>
+     </candidate>
+     <candidate>
+         <name>Henry Irving</name>
+         <GPA>3.83</GPA>
+         <skills>Rust</skills>
+         <skills>WebAssembly</skills>
+         <skills>Networking</skills>
+         <hobby>surfing</hobby>
+     </candidate>
+     <candidate>
+         <name>Isabella Johnson</name>
+         <GPA>3.84</GPA>
+         <skills>TypeScript</skills>
+         <skills>React</skills>
+         <skills>GraphQL</skills>
+         <preferred_ide>WebStorm</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Jacob King</name>
+         <GPA>3.74</GPA>
+         <skills>Java</skills>
+         <skills>Spring Boot</skills>
+         <skills>Thymeleaf</skills>
+         <certifications>Spring Certified Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Katie Lane</name>
+         <GPA>3.86</GPA>
+         <skills>C</skills>
+         <skills>Embedded Systems</skills>
+         <skills>Sockets</skills>
+         <hobby>chess</hobby>
+     </candidate>
+     <candidate>
+         <name>Liam Mitchell</name>
+         <GPA>3.9</GPA>
+         <skills>JavaScript</skills>
+         <skills>Next.js</skills>
+         <skills>Tailwind CSS</skills>
+         <availability>full-time</availability>
+     </candidate>
+     <candidate>
+         <name>Mia Nolan</name>
+         <GPA>3.85</GPA>
+         <skills>Python</skills>
+         <skills>Pandas</skills>
+         <skills>Data Visualization</skills>
+         <hobby>drawing</hobby>
+     </candidate>
+     <candidate>
+         <name>Noah O'Connor</name>
+         <GPA>3.87</GPA>
+         <skills>Java</skills>
+         <skills>Hibernate</skills>
+         <skills>Maven</skills>
+         <certifications>Oracle Certified Java Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Olivia Parker</name>
+         <GPA>3.82</GPA>
+         <skills>Go</skills>
+         <skills>Redis</skills>
+         <skills>Celery</skills>
+         <hobby>traveling</hobby>
+     </candidate>
+     <candidate>
+         <name>Preston Quinn</name>
+         <GPA>3.88</GPA>
+         <skills>Rust</skills>
+         <skills>Tokio</skills>
+         <skills>Actix</skills>
+         <availability>part-time</availability>
+     </candidate>
+     <candidate>
+         <name>Quinn Robinson</name>
+         <GPA>3.8</GPA>
+         <skills>Scala</skills>
+         <skills>Akka</skills>
+         <skills>Play</skills>
+         <preferred_ide>IntelliJ</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Rachel Scott</name>
+         <GPA>3.77</GPA>
+         <skills>PHP</skills>
+         <skills>Laravel</skills>
+         <skills>Blade</skills>
+         <hobby>gardening</hobby>
+     </candidate>
+     <candidate>
+         <name>Samuel Thompson</name>
+         <GPA>3.93</GPA>
+         <skills>Python</skills>
+         <skills>FastAPI</skills>
+         <skills>NumPy</skills>
+         <certifications>Data Science Specialist</certifications>
+     </candidate>
+     <candidate>
+         <name>Tina Underwood</name>
+         <GPA>3.79</GPA>
+         <skills>C#</skills>
+         <skills>.NET</skills>
+         <skills>Entity Framework</skills>
+         <availability>contract</availability>
+     </candidate>
+     <candidate>
+         <name>Uma Vaughn</name>
+         <GPA>3.84</GPA>
+         <skills>Ruby</skills>
+         <skills>Hanami</skills>
+         <skills>Sequel</skills>
+         <hobby>photography</hobby>
+     </candidate>
+     <candidate>
+         <name>Victor Watson</name>
+         <GPA>3.81</GPA>
+         <skills>Kotlin</skills>
+         <skills>Android</skills>
+         <skills>Retrofit</skills>
+         <preferred_ide>Android Studio</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Willow Xavier</name>
+         <GPA>3.85</GPA>
+         <skills>JavaScript</skills>
+         <skills>Gatsby</skills>
+         <skills>Chakra UI</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Xavier Young</name>
+         <GPA>3.78</GPA>
+         <skills>Java</skills>
+         <skills>Guice</skills>
+         <skills>Mockito</skills>
+         <hobby>robotics</hobby>
+     </candidate>
+     <candidate>
+         <name>Yasmine Zimmerman</name>
+         <GPA>3.8</GPA>
+         <skills>Swift</skills>
+         <skills>Objective-C</skills>
+         <skills>UIKit</skills>
+         <certifications>Apple Certified iOS Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Zachary Allen</name>
+         <GPA>3.84</GPA>
+         <skills>Go</skills>
+         <skills>Echo</skills>
+         <skills>Gorm</skills>
+         <hobby>marathon running</hobby>
+     </candidate>
+     <candidate>
+         <name>Adam Hart</name>
+         <GPA>3.85</GPA>
+         <skills>Python</skills>
+         <skills>Django</skills>
+         <skills>PostgreSQL</skills>
+         <hobby>rock climbing</hobby>
+     </candidate>
+     <candidate>
+         <name>Bella Fisher</name>
+         <GPA>3.78</GPA>
+         <skills>Java</skills>
+         <skills>Spring Boot</skills>
+         <skills>Thymeleaf</skills>
+         <certifications>Oracle Certified Java Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Caleb Grant</name>
+         <GPA>3.87</GPA>
+         <skills>JavaScript</skills>
+         <skills>React</skills>
+         <skills>Node.js</skills>
+         <availability>remote</availability>
+     </candidate>
+     <candidate>
+         <name>Danielle Green</name>
+         <GPA>3.92</GPA>
+         <skills>Ruby</skills>
+         <skills>Rails</skills>
+         <skills>RSpec</skills>
+         <preferred_ide>RubyMine</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Ethan White</name>
+         <GPA>3.91</GPA>
+         <skills>C++</skills>
+         <skills>Game Development</skills>
+         <skills>OpenGL</skills>
+         <hobby>gaming</hobby>
+     </candidate>
+     <candidate>
+         <name>Fiona Bell</name>
+         <GPA>3.89</GPA>
+         <skills>Go</skills>
+         <skills>Microservices</skills>
+         <skills>Redis</skills>
+         <certifications>Certified Kubernetes Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Grace Lane</name>
+         <GPA>3.76</GPA>
+         <skills>TypeScript</skills>
+         <skills>Angular</skills>
+         <skills>RxJS</skills>
+         <hobby>photography</hobby>
+     </candidate>
+     <candidate>
+         <name>Henry Moore</name>
+         <GPA>3.8</GPA>
+         <skills>PHP</skills>
+         <skills>Laravel</skills>
+         <skills>Blade</skills>
+         <availability>part-time</availability>
+     </candidate>
+     <candidate>
+         <name>Isla Parker</name>
+         <GPA>3.83</GPA>
+         <skills>Swift</skills>
+         <skills>iOS Development</skills>
+         <skills>SwiftUI</skills>
+         <preferred_ide>Xcode</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Jack Wilson</name>
+         <GPA>3.88</GPA>
+         <skills>C#</skills>
+         <skills>.NET</skills>
+         <skills>Azure</skills>
+         <hobby>hiking</hobby>
+     </candidate>
+     <candidate>
+         <name>Katie Edwards</name>
+         <GPA>3.81</GPA>
+         <skills>Python</skills>
+         <skills>Machine Learning</skills>
+         <skills>Pandas</skills>
+         <certifications>Data Science Specialist</certifications>
+     </candidate>
+     <candidate>
+         <name>Leo Scott</name>
+         <GPA>3.9</GPA>
+         <skills>Java</skills>
+         <skills>Spring</skills>
+         <skills>Hibernate</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Maya Adams</name>
+         <GPA>3.79</GPA>
+         <skills>Rust</skills>
+         <skills>WebAssembly</skills>
+         <skills>Networking</skills>
+         <hobby>traveling</hobby>
+     </candidate>
+     <candidate>
+         <name>Nathaniel Foster</name>
+         <GPA>3.87</GPA>
+         <skills>Kotlin</skills>
+         <skills>Android</skills>
+         <skills>Jetpack Compose</skills>
+         <preferred_ide>Android Studio</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Olivia Grant</name>
+         <GPA>3.92</GPA>
+         <skills>JavaScript</skills>
+         <skills>Vue.js</skills>
+         <skills>GraphQL</skills>
+         <certifications>Certified Frontend Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Paul Robinson</name>
+         <GPA>3.8</GPA>
+         <skills>Go</skills>
+         <skills>Echo</skills>
+         <skills>PostgreSQL</skills>
+         <availability>contract</availability>
+     </candidate>
+     <candidate>
+         <name>Quinn Rogers</name>
+         <GPA>3.84</GPA>
+         <skills>Scala</skills>
+         <skills>Spark</skills>
+         <skills>Kafka</skills>
+         <hobby>cycling</hobby>
+     </candidate>
+     <candidate>
+         <name>Rachel Johnson</name>
+         <GPA>3.9</GPA>
+         <skills>JavaScript</skills>
+         <skills>React Native</skills>
+         <skills>Expo</skills>
+         <preferred_ide>VSCode</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Samuel King</name>
+         <GPA>3.85</GPA>
+         <skills>Python</skills>
+         <skills>Flask</skills>
+         <skills>REST APIs</skills>
+         <certifications>Certified Backend Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Tina Adams</name>
+         <GPA>3.8</GPA>
+         <skills>C++</skills>
+         <skills>QT</skills>
+         <skills>OpenCV</skills>
+         <availability>remote</availability>
+     </candidate>
+     <candidate>
+         <name>Uma Jenkins</name>
+         <GPA>3.88</GPA>
+         <skills>Java</skills>
+         <skills>Thymeleaf</skills>
+         <skills>Maven</skills>
+         <hobby>volunteering</hobby>
+     </candidate>
+     <candidate>
+         <name>Victor Young</name>
+         <GPA>3.9</GPA>
+         <skills>Rust</skills>
+         <skills>Actix</skills>
+         <skills>Tokio</skills>
+         <certifications>Certified Rust Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Willow Carter</name>
+         <GPA>3.87</GPA>
+         <skills>JavaScript</skills>
+         <skills>Electron</skills>
+         <skills>Chakra UI</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Xander Ross</name>
+         <GPA>3.85</GPA>
+         <skills>Go</skills>
+         <skills>Gin</skills>
+         <skills>Gorm</skills>
+         <hobby>woodworking</hobby>
+     </candidate>
+     <candidate>
+         <name>Yasmine Hart</name>
+         <GPA>3.89</GPA>
+         <skills>C#</skills>
+         <skills>Unity</skills>
+         <skills>Game Development</skills>
+         <preferred_ide>Rider</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Zachary Hayes</name>
+         <GPA>3.74</GPA>
+         <skills>Python</skills>
+         <skills>Django</skills>
+         <skills>Celery</skills>
+         <hobby>marathon running</hobby>
+     </candidate>
+     <candidate>
+         <name>Aiden Miller</name>
+         <GPA>3.78</GPA>
+         <skills>Ruby</skills>
+         <skills>Sinatra</skills>
+         <skills>PostgreSQL</skills>
+         <availability>part-time</availability>
+     </candidate>
+     <candidate>
+         <name>Bella Lewis</name>
+         <GPA>3.8</GPA>
+         <skills>Kotlin</skills>
+         <skills>Android</skills>
+         <skills>Coroutines</skills>
+         <certifications>Certified Android Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Charles Wilson</name>
+         <GPA>3.85</GPA>
+         <skills>JavaScript</skills>
+         <skills>Svelte</skills>
+         <skills>Rollup</skills>
+         <hobby>cosplaying</hobby>
+     </candidate>
+     <candidate>
+         <name>Danielle Martinez</name>
+         <GPA>3.84</GPA>
+         <skills>PHP</skills>
+         <skills>Symfony</skills>
+         <skills>Doctrine</skills>
+         <preferred_ide>PHPStorm</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Elijah Cooper</name>
+         <GPA>3.87</GPA>
+         <skills>Scala</skills>
+         <skills>Cats</skills>
+         <skills>Play Framework</skills>
+         <hobby>painting</hobby>
+     </candidate>
+     <candidate>
+         <name>Fiona Moore</name>
+         <GPA>3.9</GPA>
+         <skills>C++</skills>
+         <skills>Game Development</skills>
+         <skills>Unreal Engine</skills>
+         <certifications>Certified Unreal Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>George White</name>
+         <GPA>3.88</GPA>
+         <skills>Python</skills>
+         <skills>FastAPI</skills>
+         <skills>SQLAlchemy</skills>
+         <availability>remote</availability>
+     </candidate>
+     <candidate>
+         <name>Hannah Garcia</name>
+         <GPA>3.76</GPA>
+         <skills>Rust</skills>
+         <skills>Embedded Systems</skills>
+         <skills>Networking</skills>
+         <hobby>chess</hobby>
+     </candidate>
+     <candidate>
+         <name>Isabel Scott</name>
+         <GPA>3.82</GPA>
+         <skills>TypeScript</skills>
+         <skills>React</skills>
+         <skills>Redux</skills>
+         <preferred_ide>WebStorm</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Jacob Lee</name>
+         <GPA>3.9</GPA>
+         <skills>Java</skills>
+         <skills>Spring Boot</skills>
+         <skills>Kafka</skills>
+         <certifications>Certified Spring Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Katie Hall</name>
+         <GPA>3.84</GPA>
+         <skills>C</skills>
+         <skills>Embedded Systems</skills>
+         <skills>Sockets</skills>
+         <hobby>robotics</hobby>
+     </candidate>
+     <candidate>
+         <name>Leo Nelson</name>
+         <GPA>3.83</GPA>
+         <skills>JavaScript</skills>
+         <skills>Next.js</skills>
+         <skills>Tailwind CSS</skills>
+         <availability>freelance</availability>
+     </candidate>
+     <candidate>
+         <name>Maya Rivera</name>
+         <GPA>3.8</GPA>
+         <skills>Python</skills>
+         <skills>Pandas</skills>
+         <skills>Data Visualization</skills>
+         <hobby>blogging</hobby>
+     </candidate>
+     <candidate>
+         <name>Noah Edwards</name>
+         <GPA>3.9</GPA>
+         <skills>Java</skills>
+         <skills>Hibernate</skills>
+         <skills>JPA</skills>
+         <certifications>Oracle Certified Java Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Olivia Brown</name>
+         <GPA>3.76</GPA>
+         <skills>Go</skills>
+         <skills>Concurrency</skills>
+         <skills>Gin</skills>
+         <hobby>hiking</hobby>
+     </candidate>
+     <candidate>
+         <name>Peter Turner</name>
+         <GPA>3.88</GPA>
+         <skills>Rust</skills>
+         <skills>Tokio</skills>
+         <skills>Actix</skills>
+         <availability>contract</availability>
+     </candidate>
+     <candidate>
+         <name>Quinn Barnes</name>
+         <GPA>3.8</GPA>
+         <skills>Scala</skills>
+         <skills>Spark</skills>
+         <skills>Akka</skills>
+         <preferred_ide>IntelliJ</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Rachel Young</name>
+         <GPA>3.9</GPA>
+         <skills>PHP</skills>
+         <skills>Laravel</skills>
+         <skills>Blade</skills>
+         <hobby>gardening</hobby>
+     </candidate>
+     <candidate>
+         <name>Samuel Martinez</name>
+         <GPA>3.8</GPA>
+         <skills>Python</skills>
+         <skills>FastAPI</skills>
+         <skills>NumPy</skills>
+         <certifications>Certified Data Scientist</certifications>
+     </candidate>
+     <candidate>
+         <name>Tina Simmons</name>
+         <GPA>3.86</GPA>
+         <skills>C#</skills>
+         <skills>.NET</skills>
+         <skills>Entity Framework</skills>
+         <availability>remote</availability>
+     </candidate>
+     <candidate>
+         <name>Uma Ford</name>
+         <GPA>3.79</GPA>
+         <skills>Ruby</skills>
+         <skills>Hanami</skills>
+         <skills>Sequel</skills>
+         <hobby>photography</hobby>
+     </candidate>
+     <candidate>
+         <name>Victor Lopez</name>
+         <GPA>3.88</GPA>
+         <skills>Kotlin</skills>
+         <skills>Android</skills>
+         <skills>Retrofit</skills>
+         <preferred_ide>Android Studio</preferred_ide>
+     </candidate>
+     <candidate>
+         <name>Willow Collins</name>
+         <GPA>3.89</GPA>
+         <skills>JavaScript</skills>
+         <skills>Gatsby</skills>
+         <skills>GraphQL</skills>
+         <availability>full-time</availability>
+     </candidate>
+     <candidate>
+         <name>Xander Watson</name>
+         <GPA>3.78</GPA>
+         <skills>Java</skills>
+         <skills>Guice</skills>
+         <skills>Mockito</skills>
+         <hobby>kayaking</hobby>
+     </candidate>
+     <candidate>
+         <name>Yasmine Thompson</name>
+         <GPA>3.85</GPA>
+         <skills>Swift</skills>
+         <skills>Objective-C</skills>
+         <skills>UIKit</skills>
+         <certifications>Certified iOS Developer</certifications>
+     </candidate>
+     <candidate>
+         <name>Zachary Hughes</name>
+         <GPA>3.82</GPA>
+         <skills>Go</skills>
+         <skills>Echo</skills>
+         <skills>Gorm</skills>
+         <hobby>marathon running</hobby>
+     </candidate>
+ </root>
