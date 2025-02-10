@@ -103,9 +103,6 @@ Makefile
 *.tmp
 *.temp
 
-# Logs
-*.log
-
 # Build directories
 build/
 bin/
@@ -171,5 +168,6 @@ vcpkg/vcpkg-artifacts/
 # Ignore build output directories
 x64/
 
-# Ignore database file
+# Ignore any database file
 *.db
+*.xml
