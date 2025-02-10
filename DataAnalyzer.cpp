@@ -26,7 +26,7 @@ std::map<std::string, UniversityStats> DataAnalyzer::getUniversityStats(const st
     return stats;
 }
 
-std::vector<std::pair<std::string, int>> DataAnalyzer::getMostCommonSkills(const std::vector<Candidate>& candidates, int topN) {
+std::vector<std::pair<std::string, int>> DataAnalyzer::getSkillsStats(const std::vector<Candidate>& candidates) {
     std::map<std::string, int> skillCounts;
     for (const auto& c : candidates) {
         for (const auto& skill : c.skills) {
@@ -39,6 +39,6 @@ std::vector<std::pair<std::string, int>> DataAnalyzer::getMostCommonSkills(const
     std::sort(sortedSkills.begin(), sortedSkills.end(),
         [](const auto& a, const auto& b) { return a.second > b.second; });
 
-    if (sortedSkills.size() > topN) sortedSkills.resize(topN);
+    //if (sortedSkills.size() > topN) sortedSkills.resize(topN);
     return sortedSkills;
 }

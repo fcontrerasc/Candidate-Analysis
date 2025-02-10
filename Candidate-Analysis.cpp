@@ -11,6 +11,8 @@
 #include <sstream>
 #include <wx/wx.h>
 #include <wx/listctrl.h>
+#include <wx/valnum.h>
+#include <wx/wrapsizer.h>
 
 std::string getCurrentDate() {
     auto now = std::chrono::system_clock::now();
@@ -26,7 +28,6 @@ class MyApp : public wxApp
 {
 public:
     bool OnInit() override;
-	//int OnRun() override;
 };
 
 wxIMPLEMENT_APP(MyApp);
@@ -38,21 +39,27 @@ public:
     void PopulateCandidatesList();
 
 private:
-    void OnHello(wxCommandEvent& event);
-    void OnExit(wxCommandEvent& event);
-    void OnAbout(wxCommandEvent& event);
+    void OnSkillSelected(wxCommandEvent& event);
+    void OnSkillDoubleClick(wxMouseEvent& event);
 
     wxTextCtrl* totalCandidates;
     wxListCtrl* universityStats;
     wxListCtrl* skillsStats;
-    wxTextCtrl* skillsInput;
-    wxTextCtrl* universityInput;
+    wxComboBox* skillsInput;
+    wxComboBox* universityInput;
     wxTextCtrl* minGPAInput;
     wxTextCtrl* maxGPAInput;
+    wxCheckBox* skillsCheckBox;
+    wxCheckBox* universityCheckBox;
+    wxCheckBox* gpaCheckBox;
     wxListCtrl* candidatesList;
     wxListCtrl* savedFilters;
+	wxButton* clearButton;
     wxButton* saveButton;
     wxButton* rankButton;
+    wxWrapSizer* skillsWrapSizer;
+    std::vector<wxStaticText*> selectedSkills;
+    wxPanel* panel;
 };
 
 enum
@@ -108,16 +115,10 @@ bool MyApp::OnInit()
     return true;
 }
 
-//int MyApp::OnRun()
-//{
-//	std::cout << "Running app" << std::endl;
-//	return wxApp::OnRun();
-//}
-
 MyFrame::MyFrame()
     : wxFrame(nullptr, wxID_ANY, "Candidate Analysis", wxDefaultPosition, wxSize(600, 800))
 {
-    wxPanel* panel = new wxPanel(this);
+    panel = new wxPanel(this);
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     wxStaticText* statsLabel = new wxStaticText(panel, wxID_ANY, "Stats");
@@ -137,33 +138,62 @@ MyFrame::MyFrame()
 
     skillsStats = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxSize(280, 100), wxLC_REPORT);
     skillsStats->InsertColumn(0, "Skill");
+	skillsStats->InsertColumn(1, "Frecuency");
     mainSizer->Add(skillsStats, 0, wxEXPAND | wxALL, 5);
 
     wxStaticText* filtersLabel = new wxStaticText(panel, wxID_ANY, "Filters");
     mainSizer->Add(filtersLabel, 0, wxLEFT | wxTOP, 10);
 
-    wxBoxSizer* filtersSizer = new wxBoxSizer(wxHORIZONTAL);
-    skillsInput = new wxTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxSize(100, 25));
-    universityInput = new wxTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxSize(100, 25));
-    minGPAInput = new wxTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxSize(50, 25));
-    maxGPAInput = new wxTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxSize(50, 25));
+    wxBoxSizer* filtersSizer = new wxBoxSizer(wxVERTICAL);
+
+    wxBoxSizer* optionsSizer = new wxBoxSizer(wxHORIZONTAL);
+	clearButton = new wxButton(panel, wxID_ANY, "Clear", wxDefaultPosition, wxSize(50, 25));
     saveButton = new wxButton(panel, wxID_ANY, "Save", wxDefaultPosition, wxSize(50, 25));
     rankButton = new wxButton(panel, wxID_ANY, "Rank", wxDefaultPosition, wxSize(50, 25));
+	optionsSizer->Add(clearButton, 0, wxLEFT, 10);
+	optionsSizer->Add(saveButton, 0, wxLEFT, 10);
+	optionsSizer->Add(rankButton, 0, wxLEFT, 5);
+	filtersSizer->Add(optionsSizer, 0, wxEXPAND | wxALL, 5);
 
-    filtersSizer->Add(new wxStaticText(panel, wxID_ANY, "Skills"), 0, wxLEFT, 10);
-    filtersSizer->Add(skillsInput, 0, wxLEFT, 5);
-    filtersSizer->Add(new wxStaticText(panel, wxID_ANY, "University"), 0, wxLEFT, 10);
-    filtersSizer->Add(universityInput, 0, wxLEFT, 5);
-    filtersSizer->Add(new wxStaticText(panel, wxID_ANY, "GPA Min"), 0, wxLEFT, 10);
-    filtersSizer->Add(minGPAInput, 0, wxLEFT, 5);
-    filtersSizer->Add(new wxStaticText(panel, wxID_ANY, "Max"), 0, wxLEFT, 10);
-    filtersSizer->Add(maxGPAInput, 0, wxLEFT, 5);
-    filtersSizer->Add(saveButton, 0, wxLEFT, 10);
-    filtersSizer->Add(rankButton, 0, wxLEFT, 5);
+    wxBoxSizer* skillsSizer = new wxBoxSizer(wxHORIZONTAL);
+    skillsInput = new wxComboBox(panel, wxID_ANY, "", wxDefaultPosition, wxSize(100, 25));
+    skillsCheckBox = new wxCheckBox(panel, wxID_ANY, "");
+    skillsSizer->Add(new wxStaticText(panel, wxID_ANY, "Skills"), 0, wxLEFT, 10);
+    skillsSizer->Add(skillsInput, 0, wxLEFT, 5);
+    skillsSizer->Add(skillsCheckBox, 0, wxLEFT, 5);
+
+    filtersSizer->Add(skillsSizer, 0, wxEXPAND | wxALL, 5);
+
+    skillsWrapSizer = new wxWrapSizer(wxHORIZONTAL);
+    filtersSizer->Add(skillsWrapSizer, 0, wxEXPAND | wxALL, 5);
+
+    wxBoxSizer* universitySizer = new wxBoxSizer(wxHORIZONTAL);
+    universityInput = new wxComboBox(panel, wxID_ANY, "", wxDefaultPosition, wxSize(100, 25));
+    universityCheckBox = new wxCheckBox(panel, wxID_ANY, "");
+    universitySizer->Add(new wxStaticText(panel, wxID_ANY, "University"), 0, wxLEFT, 10);
+    universitySizer->Add(universityInput, 0, wxLEFT, 5);
+    universitySizer->Add(universityCheckBox, 0, wxLEFT, 5);
+    filtersSizer->Add(universitySizer, 0, wxEXPAND | wxALL, 5);
+
+    wxBoxSizer* gpaSizer = new wxBoxSizer(wxHORIZONTAL);
+
+    // Create validators for minGPAInput and maxGPAInput
+    wxFloatingPointValidator<double> gpaValidator(2, nullptr, wxNUM_VAL_DEFAULT);
+    gpaValidator.SetRange(0.0, 4.0);
+
+    minGPAInput = new wxTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxSize(50, 25), 0, gpaValidator);
+    maxGPAInput = new wxTextCtrl(panel, wxID_ANY, "", wxDefaultPosition, wxSize(50, 25), 0, gpaValidator);
+    gpaCheckBox = new wxCheckBox(panel, wxID_ANY, "");
+    gpaSizer->Add(new wxStaticText(panel, wxID_ANY, "GPA Min"), 0, wxLEFT, 10);
+    gpaSizer->Add(minGPAInput, 0, wxLEFT, 5);
+    gpaSizer->Add(new wxStaticText(panel, wxID_ANY, "Max"), 0, wxLEFT, 10);
+    gpaSizer->Add(maxGPAInput, 0, wxLEFT, 5);
+    gpaSizer->Add(gpaCheckBox, 0, wxLEFT, 5);
+	filtersSizer->Add(gpaSizer, 0, wxEXPAND | wxALL, 5);
 
     mainSizer->Add(filtersSizer, 0, wxEXPAND | wxALL, 5);
 
-    candidatesList = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxSize(500, 200), wxLC_REPORT);
+    candidatesList = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxSize(500, 100), wxLC_REPORT);
     candidatesList->InsertColumn(0, "Name");
     candidatesList->InsertColumn(1, "University");
     candidatesList->InsertColumn(2, "Skills");
@@ -179,38 +209,90 @@ MyFrame::MyFrame()
     mainSizer->Add(savedFilters, 0, wxEXPAND | wxALL, 5);
 
     panel->SetSizer(mainSizer);
-
-    //Bind(wxEVT_MENU, &MyFrame::OnHello, this, ID_Hello);
-    //Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT);
-    //Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
+	skillsInput->Bind(wxEVT_COMBOBOX, &MyFrame::OnSkillSelected, this);
 }
 
-void MyFrame::OnExit(wxCommandEvent& event)
+void MyFrame::OnSkillSelected(wxCommandEvent& event)
 {
-    Close(true);
+    wxString selectedSkill = skillsInput->GetValue();
+    if (!selectedSkill.IsEmpty()) {
+        wxStaticText* skillText = new wxStaticText(panel, wxID_ANY, selectedSkill);
+        skillText->Bind(wxEVT_LEFT_DCLICK, &MyFrame::OnSkillDoubleClick, this);
+        skillsWrapSizer->Add(skillText, 0, wxLEFT, 5);
+        selectedSkills.push_back(skillText);
+        skillsWrapSizer->Layout();
+        panel->Layout();
+    }
 }
 
-void MyFrame::OnAbout(wxCommandEvent& event)
+void MyFrame::OnSkillDoubleClick(wxMouseEvent& event)
 {
-    wxMessageBox("This is a wxWidgets Hello World example",
-        "About Hello World", wxOK | wxICON_INFORMATION);
-}
-
-void MyFrame::OnHello(wxCommandEvent& event)
-{
-    wxLogMessage("Hello world from wxWidgets!");
+    wxStaticText* skillText = dynamic_cast<wxStaticText*>(event.GetEventObject());
+    if (skillText) {
+        skillsWrapSizer->Detach(skillText);
+        skillText->Destroy();
+        selectedSkills.erase(std::remove(selectedSkills.begin(), selectedSkills.end(), skillText), selectedSkills.end());
+        skillsWrapSizer->Layout();
+        panel->Layout();
+    }
 }
 
 void MyFrame::PopulateCandidatesList()
 {
     DatabaseManager& db = DatabaseManager::getInstance();
+    DataAnalyzer analyzer;
+
     std::vector<Candidate> candidates = db.getCandidatesByDate(getCurrentDate());
 
+    // Populate totalCandidates
+	int total = analyzer.getTotalCandidates(candidates);
+    totalCandidates->SetValue(std::to_string(total));
+
+    // Populate universityStats
+    universityStats->DeleteAllItems();
+    auto universityData = analyzer.getUniversityStats(candidates);
+    for (const auto& entry : universityData) {
+        long index = universityStats->InsertItem(universityStats->GetItemCount(), entry.first);
+        universityStats->SetItem(index, 1, std::to_string(entry.second.totalCandidates));
+        universityStats->SetItem(index, 2, std::to_string(entry.second.averageGpa));
+    }
+
+	// Populate universityInput
+	universityInput->Clear();
+	for (const auto& entry : universityData) {
+		universityInput->Append(entry.first);
+	}
+
+    // Populate skillsStats
+    skillsStats->DeleteAllItems();
+    auto skillsData = analyzer.getSkillsStats(candidates);
+    for (const auto& entry : skillsData) {
+        long index = skillsStats->InsertItem(skillsStats->GetItemCount(), entry.first);
+        skillsStats->SetItem(index, 1, std::to_string(entry.second));
+    }
+
+    // Populate skillsInput
+    skillsInput->Clear();
+    for (const auto& entry : skillsData) {
+        skillsInput->Append(entry.first);
+    }
+
+    // Populate candidatesList
     candidatesList->DeleteAllItems();
     for (const auto& candidate : candidates) {
         long index = candidatesList->InsertItem(candidatesList->GetItemCount(), candidate.name);
         candidatesList->SetItem(index, 1, candidate.university);
-        candidatesList->SetItem(index, 2, wxString::FromUTF8(candidate.skills.empty() ? "" : candidate.skills[0].c_str()));
+
+        // Join all skills into a single string separated by commas
+        std::string skills;
+        for (const auto& skill : candidate.skills) {
+            if (!skills.empty()) {
+                skills += ", ";
+            }
+            skills += skill;
+        }
+        candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
         candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
     }
+
 }
