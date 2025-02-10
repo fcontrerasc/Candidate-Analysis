@@ -34,10 +34,6 @@ cmake_install.cmake
 Makefile
 
 # Visual Studio files
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-*.sln
 *.suo
 *.ncb
 *.user
@@ -131,8 +127,6 @@ vcpkg/vcpkg-artifacts/
 
 # Ignore Visual Studio specific files and directories
 .vs/
-*.vcxproj.*
-*.sln
 *.suo
 *.ncb
 *.user
