@@ -96,5 +96,6 @@ std::vector<Candidate> XMLParser::parse(const std::string& rawData, const std::s
 Parser* ParserFactory::createParser(const std::string& fileType) {
     if (fileType == "json") return new JSONParser();
     if (fileType == "xml") return new XMLParser();
+    Logger::getInstance().log("Unsupported file type: " + fileType);
     return nullptr;
 }

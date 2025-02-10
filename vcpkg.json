@@ -4,6 +4,7 @@
     "rapidjson",
     "skia",
     "sqlite3",
-    "tinyxml2"
+    "tinyxml2",
+    "wxwidgets"
   ]
 }
