@@ -3,6 +3,7 @@
 #include "DatabaseManager.h"
 #include "DataAnalyzer.h"
 #include "FilterManager.h"
+#include "PersistenceHandler.h"
 #include "ScoringEngine.h"
 #include <vector>
 #include <iostream>
@@ -43,6 +44,7 @@ private:
     void OnSkillDoubleClick(wxMouseEvent& event);
     void OnFilterChanged(wxCommandEvent& event);
     void OnClearButtonClicked(wxCommandEvent& event);
+	void OnSaveButtonClicked(wxCommandEvent& event);
 
     wxTextCtrl* totalCandidates;
     wxListCtrl* universityStats;
@@ -216,6 +218,62 @@ MyFrame::MyFrame()
     universityCheckBox->Bind(wxEVT_CHECKBOX, &MyFrame::OnFilterChanged, this);
     gpaCheckBox->Bind(wxEVT_CHECKBOX, &MyFrame::OnFilterChanged, this);
     clearButton->Bind(wxEVT_BUTTON, &MyFrame::OnClearButtonClicked, this);
+	saveButton->Bind(wxEVT_BUTTON, &MyFrame::OnSaveButtonClicked, this);
+}
+
+void MyFrame::OnSaveButtonClicked(wxCommandEvent& event)
+{
+	// Open an input dialog to get the filter name
+	wxTextEntryDialog dialog(this, "Enter a name for the filter", "Save Filter", "", wxOK | wxCANCEL);
+	if (dialog.ShowModal() == wxID_OK) {
+		std::string filterName = dialog.GetValue().ToStdString();
+		// Save the current filter settings
+		FilterData filterData;
+		filterData.date = getCurrentDate();
+		filterData.skillsChecked = skillsCheckBox->IsChecked();
+		filterData.universityChecked = universityCheckBox->IsChecked();
+		filterData.gpaChecked = gpaCheckBox->IsChecked();
+		if (filterData.skillsChecked) {
+			for (const auto& skillText : selectedSkills) {
+				filterData.skills.push_back(skillText->GetLabel().ToStdString());
+			}
+		}
+		if (filterData.universityChecked) {
+			filterData.university = universityInput->GetValue().ToStdString();
+		}
+		if (filterData.gpaChecked) {
+			double minGPA, maxGPA;
+			minGPAInput->GetValue().ToDouble(&minGPA);
+			maxGPAInput->GetValue().ToDouble(&maxGPA);
+			filterData.minGPA = minGPA;
+			filterData.maxGPA = maxGPA;
+		}
+		// Retrieve the current candidates inside candidatesList
+		std::vector<Candidate> candidates;
+		for (int i = 0; i < candidatesList->GetItemCount(); i++) {
+			Candidate c;
+			c.name = candidatesList->GetItemText(i, 0).ToStdString();
+			c.university = candidatesList->GetItemText(i, 1).ToStdString();
+			c.gpa = std::stod(candidatesList->GetItemText(i, 3).ToStdString());
+			std::string skills = candidatesList->GetItemText(i, 2).ToStdString();
+			std::stringstream ss(skills);
+			std::string skill;
+			while (std::getline(ss, skill, ',')) {
+				c.skills.push_back(skill);
+			}
+			candidates.push_back(c);
+		}
+		PersistenceHandler handler;
+		if (handler.saveToFile(candidates, filterName + ".json", filterData)) {
+			// Update the saved filters list
+			long index = savedFilters->InsertItem(savedFilters->GetItemCount(), filterName);
+			savedFilters->SetItem(index, 1, filterData.date);
+			wxMessageBox("Filter saved successfully", "Success", wxOK | wxICON_INFORMATION);
+		}
+		else {
+			wxMessageBox("Failed to save filter", "Error", wxOK | wxICON_ERROR);
+		}
+	}
 }
 
 void MyFrame::OnClearButtonClicked(wxCommandEvent& event)
@@ -279,6 +337,8 @@ void MyFrame::OnFilterChanged(wxCommandEvent& event)
 		}
         else {
             wxMessageBox("Please select a skill", "Validation Error", wxOK | wxICON_ERROR);
+			// Clear the checkbox
+			skillsCheckBox->SetValue(false);
             return;
         }
     }
@@ -290,6 +350,8 @@ void MyFrame::OnFilterChanged(wxCommandEvent& event)
 		}
         else {
             wxMessageBox("Please select a university", "Validation Error", wxOK | wxICON_ERROR);
+			// Clear the checkbox
+			universityCheckBox->SetValue(false);
             return;
         }
     }
@@ -299,12 +361,16 @@ void MyFrame::OnFilterChanged(wxCommandEvent& event)
         if (minGPAInput->GetValue().ToDouble(&minGPA) && maxGPAInput->GetValue().ToDouble(&maxGPA)) {
             if (minGPA > maxGPA) {
                 wxMessageBox("Min GPA should be less than or equal to Max GPA", "Validation Error", wxOK | wxICON_ERROR);
+				// Clear the checkbox
+				gpaCheckBox->SetValue(false);
                 return;
             }
             candidates = filter.filterByGPA(candidates, minGPA, maxGPA);
         }
         else {
             wxMessageBox("Please enter valid GPA values", "Validation Error", wxOK | wxICON_ERROR);
+			// Clear the checkbox
+			gpaCheckBox->SetValue(false);
             return;
         }
     }
@@ -312,6 +378,10 @@ void MyFrame::OnFilterChanged(wxCommandEvent& event)
 	// Check if candidates is empty
 	if (candidates.empty()) {
 		wxMessageBox("No candidates found", "Validation Error", wxOK | wxICON_ERROR);
+		// Clear the checkboxes
+		skillsCheckBox->SetValue(false);
+		universityCheckBox->SetValue(false);
+		gpaCheckBox->SetValue(false);
 		return;
 	}
 
