@@ -45,6 +45,7 @@ private:
     void OnFilterChanged(wxCommandEvent& event);
     void OnClearButtonClicked(wxCommandEvent& event);
 	void OnSaveButtonClicked(wxCommandEvent& event);
+    void OnSavedFilterDoubleClick(wxListEvent& event);
 
     wxTextCtrl* totalCandidates;
     wxListCtrl* universityStats;
@@ -219,6 +220,74 @@ MyFrame::MyFrame()
     gpaCheckBox->Bind(wxEVT_CHECKBOX, &MyFrame::OnFilterChanged, this);
     clearButton->Bind(wxEVT_BUTTON, &MyFrame::OnClearButtonClicked, this);
 	saveButton->Bind(wxEVT_BUTTON, &MyFrame::OnSaveButtonClicked, this);
+    savedFilters->Bind(wxEVT_LIST_ITEM_ACTIVATED, &MyFrame::OnSavedFilterDoubleClick, this);
+}
+
+void MyFrame::OnSavedFilterDoubleClick(wxListEvent& event)
+{
+    long itemIndex = event.GetIndex();
+    wxString filterName = savedFilters->GetItemText(itemIndex, 0);
+
+    // Load the filter from the file
+    PersistenceHandler handler;
+    FilterData filterData;
+    std::vector<Candidate> candidates = handler.loadFromFile(filterName.ToStdString() + ".json", filterData);
+
+    // Update the UI with the loaded filter data
+    skillsCheckBox->SetValue(filterData.skillsChecked);
+    universityCheckBox->SetValue(filterData.universityChecked);
+    gpaCheckBox->SetValue(filterData.gpaChecked);
+
+    skillsInput->SetValue("");
+	if (filterData.skillsChecked) {
+        for (const auto& skill : filterData.skills) {
+            wxStaticText* skillText = new wxStaticText(panel, wxID_ANY, skill);
+            skillText->Bind(wxEVT_LEFT_DCLICK, &MyFrame::OnSkillDoubleClick, this);
+            skillsWrapSizer->Add(skillText, 0, wxLEFT, 5);
+            selectedSkills.push_back(skillText);
+        }
+        skillsWrapSizer->Layout();
+        panel->Layout();
+	}
+	else {
+		for (auto skillText : selectedSkills) {
+			skillsWrapSizer->Detach(skillText);
+			skillText->Destroy();
+		}
+		selectedSkills.clear();
+		skillsWrapSizer->Layout();
+		panel->Layout();
+	}
+
+	universityInput->SetValue("");
+	if (filterData.universityChecked) {
+		universityInput->SetValue(filterData.university);
+	}
+
+	minGPAInput->SetValue("");
+	maxGPAInput->SetValue("");
+	if (filterData.gpaChecked) {
+		minGPAInput->SetValue(std::to_string(filterData.minGPA));
+		maxGPAInput->SetValue(std::to_string(filterData.maxGPA));
+	}
+
+    // Update the candidate list
+    candidatesList->DeleteAllItems();
+    for (const auto& candidate : candidates) {
+        long index = candidatesList->InsertItem(candidatesList->GetItemCount(), candidate.name);
+        candidatesList->SetItem(index, 1, candidate.university);
+
+        // Join all skills into a single string separated by commas
+        std::string skills;
+        for (const auto& skill : candidate.skills) {
+            if (!skills.empty()) {
+                skills += ", ";
+            }
+            skills += skill;
+        }
+        candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
+        candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+    }
 }
 
 void MyFrame::OnSaveButtonClicked(wxCommandEvent& event)
@@ -408,6 +477,8 @@ void MyFrame::OnSkillSelected(wxCommandEvent& event)
 {
     wxString selectedSkill = skillsInput->GetValue();
     if (!selectedSkill.IsEmpty()) {
+		skillsInput->SetValue("");
+		//skillsCheckBox->SetValue(false);
         wxStaticText* skillText = new wxStaticText(panel, wxID_ANY, selectedSkill);
         skillText->Bind(wxEVT_LEFT_DCLICK, &MyFrame::OnSkillDoubleClick, this);
         skillsWrapSizer->Add(skillText, 0, wxLEFT, 5);
