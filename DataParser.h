@@ -7,6 +7,7 @@ struct Candidate {
     double gpa;
     std::vector<std::string> skills;
     std::string university;
+    double score = 0.0f;
 };
 
 class Parser {

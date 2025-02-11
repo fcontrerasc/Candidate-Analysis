@@ -11,6 +11,6 @@ struct ScoringWeights {
 
 class ScoringEngine {
 public:
-    static float calculateScore(const Candidate& candidate, const ScoringWeights& weights);
+    static float calculateScore(Candidate& candidate, const ScoringWeights& weights);
     static std::vector<Candidate> rankCandidates(std::vector<Candidate>& candidates, const ScoringWeights& weights);
 };

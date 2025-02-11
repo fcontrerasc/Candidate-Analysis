@@ -138,6 +138,7 @@
     <ClCompile Include="FilterManager.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="PersistenceHandler.cpp" />
+    <ClCompile Include="RankDialog.cpp" />
     <ClCompile Include="ScoringEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="FilterManager.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="PersistenceHandler.h" />
+    <ClInclude Include="RankDialog.h" />
     <ClInclude Include="ScoringEngine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -5,6 +5,7 @@
 #include "FilterManager.h"
 #include "PersistenceHandler.h"
 #include "ScoringEngine.h"
+#include "RankDialog.h"
 #include <vector>
 #include <iostream>
 #include <chrono>
@@ -46,6 +47,7 @@ private:
     void OnClearButtonClicked(wxCommandEvent& event);
 	void OnSaveButtonClicked(wxCommandEvent& event);
     void OnSavedFilterDoubleClick(wxListEvent& event);
+    void OnRankButtonClicked(wxCommandEvent& event);
 
     wxTextCtrl* totalCandidates;
     wxListCtrl* universityStats;
@@ -157,7 +159,7 @@ MyFrame::MyFrame()
     rankButton = new wxButton(panel, wxID_ANY, "Rank", wxDefaultPosition, wxSize(50, 25));
 	optionsSizer->Add(clearButton, 0, wxLEFT, 10);
 	optionsSizer->Add(saveButton, 0, wxLEFT, 10);
-	optionsSizer->Add(rankButton, 0, wxLEFT, 5);
+	optionsSizer->Add(rankButton, 0, wxLEFT, 10);
 	filtersSizer->Add(optionsSizer, 0, wxEXPAND | wxALL, 5);
 
     wxBoxSizer* skillsSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -203,6 +205,7 @@ MyFrame::MyFrame()
     candidatesList->InsertColumn(1, "University");
     candidatesList->InsertColumn(2, "Skills");
     candidatesList->InsertColumn(3, "GPA");
+	candidatesList->InsertColumn(4, "Score");
     mainSizer->Add(candidatesList, 0, wxEXPAND | wxALL, 5);
 
     wxStaticText* savedFiltersLabel = new wxStaticText(panel, wxID_ANY, "Saved Filters");
@@ -221,6 +224,60 @@ MyFrame::MyFrame()
     clearButton->Bind(wxEVT_BUTTON, &MyFrame::OnClearButtonClicked, this);
 	saveButton->Bind(wxEVT_BUTTON, &MyFrame::OnSaveButtonClicked, this);
     savedFilters->Bind(wxEVT_LIST_ITEM_ACTIVATED, &MyFrame::OnSavedFilterDoubleClick, this);
+	rankButton->Bind(wxEVT_BUTTON, &MyFrame::OnRankButtonClicked, this);
+}
+
+void MyFrame::OnRankButtonClicked(wxCommandEvent& event)
+{
+	ScoringWeights weights;
+
+    std::vector<std::string> skills;
+    for (unsigned int i = 0; i < skillsInput->GetCount(); ++i) {
+        skills.push_back(skillsInput->GetString(i).ToStdString());
+    }
+
+    std::vector<std::string> universities;
+    for (unsigned int i = 0; i < universityInput->GetCount(); ++i) {
+        universities.push_back(universityInput->GetString(i).ToStdString());
+    }
+
+    RankDialog rankDialog(this, skills, universities, weights);
+    if (rankDialog.ShowModal() == wxID_OK) {
+        ScoringEngine engine;
+		// Get the current content of candidatesList and store it in a vector
+		std::vector<Candidate> candidates;
+        for (int i = 0; i < candidatesList->GetItemCount(); i++) {
+            Candidate c;
+            c.name = candidatesList->GetItemText(i, 0).ToStdString();
+            c.university = candidatesList->GetItemText(i, 1).ToStdString();
+            c.gpa = std::stod(candidatesList->GetItemText(i, 3).ToStdString());
+            std::string skills = candidatesList->GetItemText(i, 2).ToStdString();
+            std::stringstream ss(skills);
+            std::string skill;
+            while (std::getline(ss, skill, ',')) {
+                c.skills.push_back(skill);
+            }
+            candidates.push_back(c);
+        }
+		// Reorder the candidates based on the new ranking
+		std::vector<Candidate> rankedCandidates = engine.rankCandidates(candidates, weights);
+		// Update the candidatesList with the new ranking
+		candidatesList->DeleteAllItems();
+        for (const auto& candidate : rankedCandidates) {
+            long index = candidatesList->InsertItem(candidatesList->GetItemCount(), candidate.name);
+            candidatesList->SetItem(index, 1, candidate.university);
+            std::string skills;
+            for (const auto& skill : candidate.skills) {
+                if (!skills.empty()) {
+                    skills += ", ";
+                }
+                skills += skill;
+            }
+            candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
+            candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+            candidatesList->SetItem(index, 4, std::to_string(candidate.score));
+        }
+    }
 }
 
 void MyFrame::OnSavedFilterDoubleClick(wxListEvent& event)
@@ -287,6 +344,7 @@ void MyFrame::OnSavedFilterDoubleClick(wxListEvent& event)
         }
         candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
         candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+		candidatesList->SetItem(index, 4, std::to_string(candidate.score));
     }
 }
 
@@ -386,6 +444,7 @@ void MyFrame::OnClearButtonClicked(wxCommandEvent& event)
         }
         candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
         candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+		candidatesList->SetItem(index, 4, std::to_string(candidate.score));
     }
 }
 
@@ -470,6 +529,7 @@ void MyFrame::OnFilterChanged(wxCommandEvent& event)
         }
         candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
         candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+		candidatesList->SetItem(index, 4, std::to_string(candidate.score));
     }
 }
 
@@ -556,6 +616,7 @@ void MyFrame::PopulateCandidatesList()
         }
         candidatesList->SetItem(index, 2, wxString::FromUTF8(skills.c_str()));
         candidatesList->SetItem(index, 3, std::to_string(candidate.gpa));
+		candidatesList->SetItem(index, 4, std::to_string(candidate.score));
     }
 
 }

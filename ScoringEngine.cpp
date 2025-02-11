@@ -1,7 +1,7 @@
 #include "ScoringEngine.h"
 #include <algorithm>
 
-float ScoringEngine::calculateScore(const Candidate& candidate, const ScoringWeights& weights) {
+float ScoringEngine::calculateScore(Candidate& candidate, const ScoringWeights& weights) {
     // University weight
     float uniWeight = 0.0f;
     auto it = weights.universityWeights.find(candidate.university);
@@ -17,13 +17,16 @@ float ScoringEngine::calculateScore(const Candidate& candidate, const ScoringWei
         }
     }
 
-    return (candidate.gpa * weights.gpaWeight) + (matchingSkills * weights.skillWeight) + uniWeight;
+	candidate.score = (candidate.gpa * weights.gpaWeight) + (matchingSkills * weights.skillWeight) + uniWeight;
+
+	return candidate.score;
 }
 
 std::vector<Candidate> ScoringEngine::rankCandidates(std::vector<Candidate>& candidates, const ScoringWeights& weights) {
-    std::sort(candidates.begin(), candidates.end(),
-        [weights](const Candidate& a, const Candidate& b) {
-            return calculateScore(a, weights) > calculateScore(b, weights);
-        });
+    
+	for (auto& c : candidates) {
+		calculateScore(c, weights);
+	}
+	std::sort(candidates.begin(), candidates.end(), [](const Candidate& a, const Candidate& b) { return a.score > b.score; });
     return candidates;
 }
